@@ -17,6 +17,12 @@ def mask_card_number(card_info: str) -> str:
         return "Некорректный ввод"
 
 
+def get_date(full_date: str) -> str:
+    """Функция, которая принимает и изменяет строку с датой"""
+    return f"{full_date[8:10]}.{full_date[5:7]}.{full_date[:4]}"
+
+
 if __name__ == "__main__":
     print(mask_card_number("Visa Platinum 8909212136605229"))
     print(mask_card_number("Счет 736222222254108430135874305"))
+    print(get_date("2024-03-11T02:26:18.671407"))
