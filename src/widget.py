@@ -31,4 +31,4 @@ def get_date(date_str: str) -> str:
 if __name__ == "__main__":
     print(mask_account_card("Visa Platinum 8909212136605229"))
     print(mask_account_card("Счет 736222222254108430135874305"))
-    print(get_date("2024-03-11T02:26:18.671407"))
+    print(get_date("2024-03-11T02:26:14.671407"))
