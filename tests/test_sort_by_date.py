@@ -35,6 +35,7 @@ def test_sort_by_date_missing_date_key() -> None:
     data_missing_date = [{"id": 1, "state": "EXECUTED"}]
     assert sort_by_date(data_missing_date) == []
 
+
 # Запускаем тесты, если файл выполняется как основной
 if __name__ == "__main__":
     pytest.main()

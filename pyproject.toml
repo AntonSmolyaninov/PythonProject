@@ -34,6 +34,14 @@ no_implicit_optional = true
 warn_return_any = true
 exclude = 'venv'
 ignore_missing_imports = true
+# Не сообщать ошибки в пакете `package_to_fix_later`
+[mypy-package_to_fix_later.*]
+ignore_errors = True
+# Отключить конкретные коды ошибок в пакете `tests`
+[mypy-tests.*]
+disable_error_code = var-annotated, has-type
+allow_untyped_defs = True
+
 
 [tool.black]
 # Максимальная длина строки

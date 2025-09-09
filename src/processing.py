@@ -9,13 +9,12 @@ def filter_by_state(list_dictionary: List[Dict[str, Any]], state: str = "EXECUTE
     return [item for item in list_dictionary if item.get("state") == state]
 
 
-
-
 def sort_by_date(list_dictionary: List[Dict[str, Any]], reverse: bool = True) -> List[Dict[str, Any]]:
     """
     Функция, которая принимает список словарей и необязательный параметр, задающий порядок сортировки.
     Возвращает новый список, отсортированный по дате (date).
     """
+
     def is_valid_iso_format(date_str: str) -> bool:
         """
         Проверяет, соответствует ли строка формату ISO.
@@ -38,6 +37,7 @@ def sort_by_date(list_dictionary: List[Dict[str, Any]], reverse: bool = True) ->
         key=lambda x: datetime.fromisoformat(x["date"]),
         reverse=reverse,
     )
+
 
 if __name__ == "__main__":
 

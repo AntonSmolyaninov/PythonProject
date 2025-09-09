@@ -3,7 +3,6 @@ from src.processing import filter_by_state
 from typing import List, Dict, Any
 
 
-
 def test_filter_by_state():
     """Тестирование функции filter_by_state"""
 

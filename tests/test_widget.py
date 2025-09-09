@@ -2,7 +2,6 @@ import pytest
 from src.widget import mask_account_card, get_mask_card_number, get_mask_account, get_date
 
 
-
 def test_mask_account_card():
     """Тестирование функции mask_account_card"""
 
@@ -12,7 +11,6 @@ def test_mask_account_card():
         ("Visa Platinum 1234567812345678", "Visa Platinum 1234 56** **** 5678"),
         ("Maestro 8765432187654321", "Maestro 8765 43** **** 4321"),
         ("Счет 12345678901234567890", "Счет **7890"),
-
         # Тесты для некорректного ввода
         ("Visa Platinum 12345678", "Некорректный ввод"),  # Неверная длина карты
         ("Maestro 87654321", "Некорректный ввод"),  # Неверная длина карты
@@ -23,8 +21,6 @@ def test_mask_account_card():
 
     for card_info, expected in test_cases:
         assert mask_account_card(card_info) == expected
-
-
 
 
 def test_get_date():
@@ -48,4 +44,3 @@ def test_get_date():
 # Запускаем тесты, если файл выполняется как основной
 if __name__ == "__main__":
     pytest.main()
-
