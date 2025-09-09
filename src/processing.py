@@ -10,9 +10,33 @@ def filter_by_state(list_dictionary: List[Dict[str, Any]], state: str = "EXECUTE
 
 
 def sort_by_date(list_dictionary: List[Dict[str, Any]], reverse: bool = True) -> List[Dict[str, Any]]:
-    """Функция, которая принимает список словарей и необязательный параметр, задающий порядок сортировки.
-    Возвращает новый список, отсортированный по дате (date)"""
-    return sorted(list_dictionary, key=lambda x: datetime.fromisoformat(x["date"]), reverse=reverse)
+    """
+    Функция, которая принимает список словарей и необязательный параметр, задающий порядок сортировки.
+    Возвращает новый список, отсортированный по дате (date).
+    """
+
+    def is_valid_iso_format(date_str: str) -> bool:
+        """
+        Проверяет, соответствует ли строка формату ISO.
+        """
+        try:
+            datetime.fromisoformat(date_str)
+            return True
+        except ValueError:
+            return False
+
+    # Проверяем, что все даты в списке соответствуют формату ISO
+    for item in list_dictionary:
+        date_str = item.get("date", "")
+        if not is_valid_iso_format(date_str):
+            return []
+
+    # Если все даты соответствуют формату ISO, сортируем список
+    return sorted(
+        list_dictionary,
+        key=lambda x: datetime.fromisoformat(x["date"]),
+        reverse=reverse,
+    )
 
 
 if __name__ == "__main__":
