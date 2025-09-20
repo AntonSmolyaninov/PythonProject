@@ -1,9 +1,11 @@
+from typing import Any, Dict, List
+
 import pytest
+
 from src.processing import filter_by_state
-from typing import List, Dict, Any
 
 
-def test_filter_by_state():
+def test_filter_by_state() -> None:
     """Тестирование функции filter_by_state"""
 
     # Подготовка тестовых данных
@@ -30,7 +32,7 @@ def test_filter_by_state():
     assert filter_by_state(test_data, "PENDING") == expected_pending
 
     # Тестирование с состоянием, которого нет в данных
-    expected_empty = []
+    expected_empty: list[Any] = []
     assert filter_by_state(test_data, "UNKNOWN") == expected_empty
 
     # Тестирование с состоянием по умолчанию (EXECUTED)
