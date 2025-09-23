@@ -1,11 +1,23 @@
-from masks import get_mask_account, get_mask_card_number
 from datetime import datetime
+
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(card_info: str) -> str:
     """Функция принимает один аргумент — строку, содержащую тип и номер карты или счета и
     возвращает строку с замаскированным номером."""
-    card_type, card_number = card_info.rsplit(" ", 1)
+
+    # Проверяем, что входная строка не пустая
+    if not card_info:
+        return "Некорректный ввод"
+
+    # Разделяем строку на тип и номер
+    parts = card_info.rsplit(" ", 1)
+
+    if len(parts) != 2:
+        return "Некорректный ввод"
+
+    card_type, card_number = parts
 
     if card_type in ["Visa Platinum", "Maestro"]:
         if len(card_number) == 16:
@@ -29,6 +41,6 @@ def get_date(date_str: str) -> str:
 
 
 if __name__ == "__main__":
-    print(mask_account_card("Visa Platinum 8909212136605229"))
+    print(mask_account_card("Visa Platinum 7909212136605200"))
     print(mask_account_card("Счет 736222222254108430135874305"))
-    print(get_date("2024-03-11T02:26:14.671407"))
+    print(get_date("2024-05-11T02:26:14.671407"))
