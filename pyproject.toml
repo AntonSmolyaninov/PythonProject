@@ -1,16 +1,13 @@
-[project]
+[tool.poetry]
 name = "pythonproject"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "Anton", email = "klip07@rambler.ru"}
-]
-readme = "README.md"
-requires-python = ">=3.8"
-dependencies = [
-    "requests>=2.32.5,<3.0.0",
-    "utils>=1.0.2,<2.0.0"
-]
+description = "Краткое описание вашего проекта"
+authors = ["Anton <klip07@rambler.ru>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+requests = ">=2.32.5,<3.0.0"
+utils = ">=1.0.2,<2.0.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
