@@ -1,17 +1,13 @@
-[project]
+[tool.poetry]
 name = "pythonproject"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "Anton",email = "klip07@rambler.ru"}
-]
-readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-    "requests (>=2.32.5,<3.0.0)",
-    "utils (>=1.0.2,<2.0.0)"
-]
+description = "Краткое описание вашего проекта"
+authors = ["Anton <klip07@rambler.ru>"]
 
+[tool.poetry.dependencies]
+python = ">=3.9"
+requests = ">=2.32.5,<3.0.0"
+utils = ">=1.0.2,<2.0.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
@@ -20,7 +16,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.1"
 pytest-cov = "^6.2.1"
-
 
 [tool.poetry.group.lint.dependencies]
 flake8 = "^7.3.0"
@@ -34,35 +29,27 @@ no_implicit_optional = true
 warn_return_any = true
 exclude = 'venv'
 ignore_missing_imports = true
-# Не сообщать ошибки в пакете `package_to_fix_later`
-[mypy-package_to_fix_later.*]
-ignore_errors = True
-# Отключить конкретные коды ошибок в пакете `tests`
-[mypy-tests.*]
-disable_error_code = var-annotated, has-type
-allow_untyped_defs = True
 
+[mypy-tests]
+disable_error_code = "var-annotated,has-type"
+allow_untyped_defs = true
 
 [tool.black]
-# Максимальная длина строки
 line-length = 119
-# Файлы, которые не нужно форматировать
 exclude = '''
 (
   /(
-      \.eggs         # Исключить несколько общих каталогов
-    | \.git          # в корне проекта
+      \.eggs
+    | \.git
     | \.hg
     | \.mypy_cache
     | \.tox
     | \.venv
     | dist
   )/
-  | foo.py           # Также отдельно исключить файл с именем foo.py
-                     # в корне проекта
+  | foo.py
 )
 '''
 
 [tool.isort]
-# максимальная длина строки
 line_length = 119

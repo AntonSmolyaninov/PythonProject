@@ -1,8 +1,9 @@
 import pytest
-from src.widget import mask_account_card, get_mask_card_number, get_mask_account, get_date
+
+from src.widget import get_date, get_mask_account, get_mask_card_number, mask_account_card
 
 
-def test_mask_account_card():
+def test_mask_account_card() -> None:
     """Тестирование функции mask_account_card"""
 
     # Настройка тестов
@@ -23,7 +24,7 @@ def test_mask_account_card():
         assert mask_account_card(card_info) == expected
 
 
-def test_get_date():
+def test_get_date() -> None:
     """Тестирование функции get_date"""
 
     # Настройка тестов
