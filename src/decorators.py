@@ -17,8 +17,7 @@ def log(filename=None):
                 return result
             except Exception as e:
                 err_type = type(e).__name__
-                s = (f"{func.__name__} error: {err_type}. "
-                     f"Inputs: {args}, {kwargs}")
+                s = f"{func.__name__} error: {err_type}. " f"Inputs: {args}, {kwargs}"
                 if filename:
                     with open(filename, "a") as f:
                         f.write(s + "\n")
