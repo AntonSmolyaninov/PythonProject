@@ -1,6 +1,8 @@
 import json
+from typing import Any, Dict, List
 
-def load_transactions(file_path):
+
+def load_transactions(file_path: str) -> List[Dict[str, Any]]:
     """
     Загружает список транзакций из JSON-файла.
     Возвращает пустой список, если файл не найден, пустой,
@@ -18,8 +20,7 @@ def load_transactions(file_path):
         return []
 
 
-if __name__ == '__main__':
-    from utils import load_transactions
+if __name__ == "__main__":
 
     result = load_transactions("../data/operations.json")
     print(result)

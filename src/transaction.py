@@ -1,6 +1,9 @@
+from typing import Any, Dict
+
 from src.external_api import convert_to_rub
 
-def get_amount_rub(transaction):
+
+def get_amount_rub(transaction: Dict[str, Any]) -> float:
     """
     Возвращает сумму транзакции в рублях. Если не RUB — вызывает API для конвертации.
     """
