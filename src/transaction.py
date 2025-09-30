@@ -1,4 +1,4 @@
-from external_api import convert_to_rub
+from src.external_api import convert_to_rub
 
 def get_amount_rub(transaction):
     """

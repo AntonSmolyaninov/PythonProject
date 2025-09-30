@@ -23,5 +23,3 @@ if __name__ == '__main__':
 
     result = load_transactions("../data/operations.json")
     print(result)
-
-
