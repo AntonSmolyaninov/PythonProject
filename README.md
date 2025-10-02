@@ -14,6 +14,9 @@
 8. `transaction_descriptions` - Генератор, который принимает список словарей с транзакциями и возвращает описание каждой операции по очереди.
 9. `card_number_generator` - Генератор, который выдает номера банковских карт в формате XXXX XXXX XXXX XXXX, где X — цифра номера карты. Генератор может сгенерировать номера карт в заданном диапазоне от 0000 0000 0000 0001 до 9999 9999 9999 9999. Генератор принимает начальное и конечное значения для генерации диапазона номеров.
 10. `log` - Декоратор для логирования вызова функции в файл или консоль.
+11. `load_transactions` - Функция загружает список транзакций из JSON-файла. Возвращает пустой список, если файл не найден, пустой, содержит не список или файл повреждён.
+12. `get_amount_rub` - Функция возвращает сумму транзакции в рублях. Если не RUB — вызывает API для конвертации.
+13. `convert_to_rub` - Функция конвертировать сумму из заданной валюты в рубли по онлайн-курсу.
 
 ## Установка:
 1. Клонируйте репозиторий:
@@ -26,10 +29,13 @@
 2. test_widget.py - тестируем `mask_account_card, get_date`
 3. test_filter_by_state.py - тестируем `filter_by_state`
 4. test_sort_by_date.py - тестируем `sort_by_date`
-5. test_filter_by_currency - тестируем `filter_by_currency`
-6. test_transaction_descriptions - тестируем `transaction_descriptions`
-7. test_card_number_generator - тестируем `card_number_generator`
-8. test_decorators_log - тестируем `log`
+5. test_filter_by_currency.py - тестируем `filter_by_currency`
+6. test_transaction_descriptions.py - тестируем `transaction_descriptions`
+7. test_card_number_generator.py - тестируем `card_number_generator`
+8. test_decorators_log.py - тестируем `log`
+9. test_utils.py - тестируем `load_transactions`
+10. test_external_apy.py - тестируем `convert_to_rub`
+11. test_transactions.py - тестируем `get_amount_rub`
 
 ### Установка теста:
 Установка через Poetry:

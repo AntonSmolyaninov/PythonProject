@@ -8,6 +8,7 @@ authors = ["Anton <klip07@rambler.ru>"]
 python = ">=3.9"
 requests = ">=2.32.5,<3.0.0"
 utils = ">=1.0.2,<2.0.0"
+python-dotenv = "^1.1.1"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
