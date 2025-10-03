@@ -1,6 +1,9 @@
 from unittest.mock import patch
+
 import pytest
+
 from src.external_api import convert_to_rub
+
 
 @patch("src.external_api.requests.get")
 @patch("src.external_api.os.getenv", return_value="fake-key")
