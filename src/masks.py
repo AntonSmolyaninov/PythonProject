@@ -15,6 +15,7 @@ file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(m
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
+
 def get_mask_card_number(card_number: str) -> str:
     """Функция принимает на вход номер карты и возвращает ее маску."""
     logger.info('Проверяем номер карты')
@@ -28,6 +29,7 @@ def get_mask_card_number(card_number: str) -> str:
     logger.info('Возвращаем маску номера')
     return mask_card_number
 
+
 def get_mask_account(account_number: str) -> str:
     """Функция принимает на вход номер счета и возвращает его маску."""
     logger.info('Проверяем номер счета')
@@ -40,6 +42,7 @@ def get_mask_account(account_number: str) -> str:
     mask_account_number = f"**{account_number[-4:]}"
     logger.info('Возвращаем маску счета')
     return mask_account_number
+
 
 if __name__ == "__main__":
     print(get_mask_card_number("1234 5678 9012 3456"))

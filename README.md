@@ -86,4 +86,10 @@
 11. test_transactions.py - тестируем `get_amount_rub`
 
 
+## Логирование:
+Запись логов в директории /logs
+masks.log - сообщения по модулю masks.py
+utils.log - сообщения по модулю utils.py
+
+
 

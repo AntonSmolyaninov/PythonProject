@@ -16,6 +16,7 @@ file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(m
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
+
 def load_transactions(file_path: str) -> List[Dict[str, Any]]:
     """
     Загружает список транзакций из JSON-файла.
@@ -36,6 +37,7 @@ def load_transactions(file_path: str) -> List[Dict[str, Any]]:
     except (FileNotFoundError, json.JSONDecodeError) as error:
         logger.error(f'Произошла ошибка: {error}. Вернем пустой список.')
         return []
+
 
 if __name__ == "__main__":
     result = load_transactions("../data/operations.json")
