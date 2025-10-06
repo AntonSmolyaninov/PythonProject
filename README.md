@@ -17,6 +17,8 @@
 11. `load_transactions` - Функция загружает список транзакций из JSON-файла. Возвращает пустой список, если файл не найден, пустой, содержит не список или файл повреждён.
 12. `get_amount_rub` - Функция возвращает сумму транзакции в рублях. Если не RUB — вызывает API для конвертации.
 13. `convert_to_rub` - Функция конвертировать сумму из заданной валюты в рубли по онлайн-курсу.
+14. `load_transactions_csv` - Считывает финансовые операции из CSV файла. Возвращает список словарей, где каждый словарь представляет одну операцию.
+15. `load_transactions_xlsx` - Считывает финансовые операции из XLSX файла. Возвращает список словарей, где каждый словарь представляет одну операцию.
 
 ## Работа с Git:
 `git init` — создать репозиторий,
@@ -84,12 +86,13 @@
 9. test_utils.py - тестируем `load_transactions`
 10. test_external_apy.py - тестируем `convert_to_rub`
 11. test_transactions.py - тестируем `get_amount_rub`
+12. test_load_transactions_csv - тестирование `load_transactions_csv`
+13. test_load_transactions_xlsx - тестирование `load_transactions_xlsx`
 
 
 ## Логирование:
 Запись логов в директории /logs
 masks.log - сообщения по модулю masks.py
 utils.log - сообщения по модулю utils.py
-
-
-
+load_transactions_csv.log - сообщения по модулю load_transactions_csv
+load_transactions_xlsx.log - сообщения по модулю load_transactions_xlsx
