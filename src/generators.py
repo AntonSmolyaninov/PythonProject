@@ -1,14 +1,17 @@
 from typing import Any, Dict, Iterator, List
 
 
+from typing import List, Dict, Any, Iterator
+
 def filter_by_currency(transactions: List[Dict[str, Any]], currency_code: str) -> Iterator[Dict[str, Any]]:
     """Фильтрует транзакции по коду валюты."""
     for transaction in transactions:
-        try:
-            if transaction["operationAmount"]["currency"]["code"] == currency_code:
+        # Проверяем наличие нужных ключей с помощью get
+        operation_amount = transaction.get("operationAmount")
+        if operation_amount and isinstance(operation_amount, dict):
+            currency = operation_amount.get("currency", {}).get("code")
+            if currency == currency_code:
                 yield transaction
-        except KeyError:
-            continue
 
 
 def transaction_descriptions(transactions: List[Dict[str, Any]]) -> Iterator[str]:

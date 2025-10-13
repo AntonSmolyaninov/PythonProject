@@ -1,25 +1,28 @@
-import os
-
 import requests
+import os
+import time
 from dotenv import load_dotenv
 
 load_dotenv()
 
-
-def convert_to_rub(amount: float, currency_code: str) -> float:
-    """
-    Конвертировать сумму из заданной валюты в рубли по онлайн-курсу.
-
-    :param amount: сумма для конвертации
-    :param currency_code: ISO-код валюты ('USD', 'EUR' и т.д.)
-    :return: сумма в рублях (float)
-    :raises RuntimeError: если не найден API-ключ
-    """
+def convert_to_rub(amount: float, currency: str) -> float | None:
     api_key = os.getenv("API_KEY")
-    if not api_key:
-        raise RuntimeError("Не найден ключ API_KEY в .env")
     url = "https://api.apilayer.com/exchangerates_data/convert"
-    params = {"to": "RUB", "from": currency_code, "amount": str(amount)}
+    params = {"amount": str(amount), "from": currency, "to": "RUB"}
     headers = {"apikey": api_key}
-    resp = requests.get(url, params=params, headers=headers)
-    return float(resp.json()["result"])
+
+    retries = 5  # Количество попыток
+    for i in range(retries):
+        try:
+            resp = requests.get(url, params=params, headers=headers)
+            if resp.status_code == 200:
+                result = resp.json()
+                return float(result["amount"])
+
+        except requests.exceptions.HTTPError as http_err:
+            if http_err.response.status_code == 429:
+                print("Слишком много запросов, ожидаем...")
+                time.sleep(2 ** i)
+                continue
+            else:
+                raise RuntimeError("Ошибка при обращении к API для конвертации валют.") from http_err
