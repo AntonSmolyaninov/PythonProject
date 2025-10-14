@@ -1,4 +1,5 @@
 import re
+from collections import Counter
 from typing import Dict, List
 
 
@@ -26,7 +27,7 @@ def count_transactions_by_category(transactions: List[Dict], categories: List[st
     :param categories: Список категорий для подсчета.
     :return: Словарь с категориями и количеством операций.
     """
-    category_count = {category: 0 for category in categories}  # Инициализируем счетчик для каждой категории.
+    category_count: Counter = Counter()   # Инициализируем счетчик для категорий.
 
     for transaction in transactions:
         description = transaction.get('description', '')
@@ -37,4 +38,5 @@ def count_transactions_by_category(transactions: List[Dict], categories: List[st
                 if category.lower() in description.lower():
                     category_count[category] += 1  # Увеличиваем счетчик для найденной категории.
 
-    return category_count
+    # Преобразуем Counter в обычный словарь и добавляем не имеющиеся категории с нулевыми значениями
+    return {category: category_count[category] for category in categories}
