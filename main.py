@@ -1,14 +1,13 @@
-import json
-from typing import List, Dict, Any
+from src.generators import filter_by_currency
+from src.processing import filter_by_state, sort_by_date
+from src.read_csv_xlsx import load_transactions_csv, load_transactions_xlsx
+from src.search import process_bank_search
+from src.transaction import get_amount_rub
 from src.utils import load_transactions
 from src.widget import get_date, mask_account_card
-from src.processing import sort_by_date, filter_by_state
-from src.generators import filter_by_currency
-from src.read_csv_xlsx import load_transactions_csv, load_transactions_xlsx
-from src.transaction import get_amount_rub
-from src.search import process_bank_search
 
-def main():
+
+def main() -> None:
     print("Привет! Добро пожаловать в программу работы с банковскими транзакциями.")
     print("Выберите необходимый пункт меню:")
     print("1. Получить информацию о транзакциях из JSON-файла")
@@ -45,8 +44,10 @@ def main():
     statuses = ["EXECUTED", "CANCELED", "PENDING"]
 
     while True:
-        status = input("Введите статус, по которому необходимо выполнить фильтрацию."
-                       " Доступные для фильтровки: EXECUTED, CANCELED, PENDING\nПользователь: ").strip().upper()
+        status = input(
+            "Введите статус, по которому необходимо выполнить фильтрацию. "
+            "Доступные для фильтровки: EXECUTED, CANCELED, PENDING\nПользователь: "
+        ).strip().upper()
 
         if status in statuses:
             print(f"Операции отфильтрованы по статусу \"{status}\".")
@@ -91,7 +92,10 @@ def main():
 
     # Фильтрация по слову в описании
     while True:
-        filter_by_description = input("Отфильтровать список транзакций по определенному слову в описании? Да/Нет\nПользователь: ").strip().lower()
+        filter_by_description = input(
+            "Отфильтровать список транзакций по определенному слову в описании? "
+            "Да/Нет\nПользователь: "
+        ).strip().lower()
 
         if filter_by_description in ['да', 'нет']:
             break
@@ -112,14 +116,15 @@ def main():
             transaction['date'] = get_date(transaction['date'])  # Форматируем дату
             transaction['amount'] = get_amount_rub(transaction)  # Конвертируем сумму в рубли
 
-            masked_card_from = mask_account_card(transaction.get('from', ''))  # Маскируем номер карты или счета от кого
-            masked_card_to = mask_account_card(transaction.get('to', ''))  # Маскируем номер карты или счета от кому
+            masked_card_from = mask_account_card(transaction.get('from', ''))
+            masked_card_to = mask_account_card(transaction.get('to', ''))
 
             print(f"{transaction['date']} {transaction['description']}")
             print(f"С {masked_card_from}")
             print(f"На {masked_card_to}")
             print(f"Сумма: {transaction['amount']} RUB")
             print()
+
 
 if __name__ == "__main__":
     main()

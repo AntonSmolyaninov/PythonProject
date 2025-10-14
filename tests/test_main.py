@@ -1,7 +1,9 @@
 import pytest
-from src.processing import sort_by_date, filter_by_state
+
 from src.generators import filter_by_currency
+from src.processing import filter_by_state, sort_by_date
 from src.transaction import get_amount_rub
+
 
 @pytest.fixture
 def transactions():

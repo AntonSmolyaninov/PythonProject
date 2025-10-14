@@ -1,4 +1,5 @@
-from src.search import process_bank_search, count_transactions_by_category
+from src.search import count_transactions_by_category, process_bank_search
+
 
 def test_process_bank_search():
     transactions = [
