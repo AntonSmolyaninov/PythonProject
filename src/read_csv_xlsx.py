@@ -26,7 +26,7 @@ def load_transactions_csv(file_path: str) -> List[Dict[str, Any]]:
     transactions = []
     try:
         csv_logger.info(f"Попытка загрузки файла CSV: {file_path}")
-        transactions_df = pd.read_csv(file_path)
+        transactions_df = pd.read_csv(file_path, sep=';')
         transactions = transactions_df.to_dict(orient='records')
         csv_logger.info(f"Успешно загружено {len(transactions)} операций из файла CSV.")
     except FileNotFoundError:
