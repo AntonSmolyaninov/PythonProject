@@ -15,7 +15,7 @@ from src.generators import transaction_descriptions
                 {"id": 2, "description": "Payment"},
                 {"id": 3, "description": "Withdrawal"},
             ],
-            ["Deposit", "Payment", "Withdrawal"]
+            ["Deposit", "Payment", "Withdrawal"],
         ),
         # Часть транзакций без поля description (или None)
         (
@@ -25,25 +25,20 @@ from src.generators import transaction_descriptions
                 {"id": 3, "description": None},
                 {"id": 4, "description": "Transfer"},
             ],
-            ["Deposit", "Transfer"]
+            ["Deposit", "Transfer"],
         ),
         # Пустой список транзакций
-        (
-            [],
-            []
-        ),
+        ([], []),
         # У всех транзакций description — None или отсутствует
         (
             [
                 {"id": 1},
                 {"id": 2, "description": None},
             ],
-            []
-        )
-    ]
+            [],
+        ),
+    ],
 )
-
-
 def test_transaction_descriptions_parametrized(transactions: List[Dict[str, Any]], expected: List[str]) -> None:
     result = list(transaction_descriptions(transactions))
     assert result == expected
